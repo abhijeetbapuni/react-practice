@@ -15,9 +15,14 @@ function App() {
       price: 400.27,
     },
   ];
+  const newExpenseDataHandler = (newExpenseData) => {
+    console.log("from app.js");
+    console.log(newExpenseData);
+  };
+
   return (
     <div className="app-bg">
-      <NewExpense />
+      <NewExpense onNewExpenseData={newExpenseDataHandler} />
       <Expenses expenses={expenses} />
     </div>
   );

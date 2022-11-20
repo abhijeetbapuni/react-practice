@@ -1,55 +1,36 @@
 import React, { useState } from "react";
 
-const ExpenseForm = () => {
-  const [userInput, setUserInput] = useState({
-    title: "",
-    price: "",
-    date: "",
-  });
+const ExpenseForm = ({ onSaveExpense }) => {
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [date, setDate] = useState("");
   const titleChangeHandler = (e) => {
-    // setUserInput({
-    //   ...userInput,
-    //   title: e.target.value,
-    // });
-    //safer approach
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        title: e.target.value,
-      };
-    });
+    setTitle(e.target.value);
   };
   const priceChangeHandler = (e) => {
-    // setUserInput({
-    //   ...userInput,
-    //   price: e.target.value,
-    // });
-    //safer approach
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        price: e.target.value,
-      };
-    });
+    setPrice(e.target.value);
   };
   const dateChangeHandler = (e) => {
-    // setUserInput({
-    //   ...userInput,
-    //   date: e.target.value,
-    // });
-    //safer approach
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        date: e.target.value,
-      };
-    });
+    setDate(e.target.value);
+  };
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const expenseData = {
+      title,
+      price,
+      date: new Date(date),
+    };
+    onSaveExpense(expenseData);
+    //two way data bidning
+    setTitle("");
+    setPrice("");
+    setDate("");
   };
   return (
-    <>
+    <form onSubmit={submitHandler}>
       <div>
         <label htmlFor="title">Title</label>
-        <input type="text" onChange={titleChangeHandler} />
+        <input type="text" onChange={titleChangeHandler} value={title} />
       </div>
       <div>
         <label htmlFor="price">Price</label>
@@ -57,6 +38,7 @@ const ExpenseForm = () => {
           type="number"
           min="0.01"
           step="0.01"
+          value={price}
           onChange={priceChangeHandler}
         />
       </div>
@@ -66,11 +48,12 @@ const ExpenseForm = () => {
           type="date"
           min="2019-01-01"
           max="2020-12-31"
+          value={date}
           onChange={dateChangeHandler}
         />
       </div>
-      {JSON.stringify(userInput)}
-    </>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 
