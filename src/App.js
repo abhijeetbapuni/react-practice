@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+const DUMMY_EXPENSES = [
+  {
+    date: new Date(2022, 11, 20),
+    title: "Car Insurance",
+    price: 200.27,
+    id: 1,
+  },
+  {
+    date: new Date(2022, 5, 20),
+    title: "Bike Insurance",
+    price: 400.27,
+    id: 2,
+  },
+];
 function App() {
-  const expenses = [
-    {
-      date: new Date(2022, 11, 20),
-      title: "Car Insurance",
-      price: 200.27,
-    },
-    {
-      date: new Date(2022, 12, 20),
-      title: "Bike Insurance",
-      price: 400.27,
-    },
-  ];
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
   const newExpenseDataHandler = (newExpenseData) => {
-    console.log("from app.js");
-    console.log(newExpenseData);
+    // setExpenses([newExpenseData, ...expenses]);
+    //best way
+    setExpenses(() => {
+      return [newExpenseData, ...expenses];
+    });
   };
 
   return (
