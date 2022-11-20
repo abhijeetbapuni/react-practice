@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 
 const ExpenseForm = () => {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [date, setDate] = useState("");
+  const [userInput, setUserInput] = useState({
+    title: "",
+    price: "",
+    date: "",
+  });
   const titleChangeHandler = (e) => {
-    setTitle(e.target.value);
+    setUserInput({
+      ...userInput,
+      title: e.target.value,
+    });
   };
   const priceChangeHandler = (e) => {
-    setPrice(e.target.value);
+    setUserInput({
+      ...userInput,
+      price: e.target.value,
+    });
   };
   const dateChangeHandler = (e) => {
-    setDate(e.target.value);
+    setUserInput({
+      ...userInput,
+      date: e.target.value,
+    });
   };
-  const color1 = Math.floor(Math.random() * 256);
-  const color2 = Math.floor(Math.random() * 256);
-  const color3 = Math.floor(Math.random() * 256);
   return (
-    <div style={{ backgroundColor: `rgb(${color1}, ${color2}, ${color3})` }}>
+    <>
       <div>
         <label htmlFor="title">Title</label>
         <input type="text" onChange={titleChangeHandler} />
@@ -40,7 +48,8 @@ const ExpenseForm = () => {
           onChange={dateChangeHandler}
         />
       </div>
-    </div>
+      {JSON.stringify(userInput)}
+    </>
   );
 };
 
