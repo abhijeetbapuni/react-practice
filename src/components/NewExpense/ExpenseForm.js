@@ -7,21 +7,42 @@ const ExpenseForm = () => {
     date: "",
   });
   const titleChangeHandler = (e) => {
-    setUserInput({
-      ...userInput,
-      title: e.target.value,
+    // setUserInput({
+    //   ...userInput,
+    //   title: e.target.value,
+    // });
+    //safer approach
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        title: e.target.value,
+      };
     });
   };
   const priceChangeHandler = (e) => {
-    setUserInput({
-      ...userInput,
-      price: e.target.value,
+    // setUserInput({
+    //   ...userInput,
+    //   price: e.target.value,
+    // });
+    //safer approach
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        price: e.target.value,
+      };
     });
   };
   const dateChangeHandler = (e) => {
-    setUserInput({
-      ...userInput,
-      date: e.target.value,
+    // setUserInput({
+    //   ...userInput,
+    //   date: e.target.value,
+    // });
+    //safer approach
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        date: e.target.value,
+      };
     });
   };
   return (
