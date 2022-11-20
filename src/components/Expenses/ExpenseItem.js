@@ -9,12 +9,14 @@ const ExpenseItem = ({ title, date, price }) => {
     console.log("clicked");
   };
   return (
-    <Card className="expense-item">
-      <ExpenseDate date={date} />
-      <div>{expenseTitle}</div>
-      <div>${price}</div>
-      <button onClick={clickHandler}>Click here</button>
-    </Card>
+    <li>
+      <Card className="expense-item">
+        <ExpenseDate date={date} />
+        <div>{expenseTitle}</div>
+        <div>${price}</div>
+        <button onClick={clickHandler}>Click here</button>
+      </Card>
+    </li>
   );
 };
 
