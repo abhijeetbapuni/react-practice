@@ -7,7 +7,6 @@ import MainHeader from "./components4/MainHeader/MainHeader";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    console.log("ran");
     const localStorageIsLoggedIn = localStorage.getItem("isLoggedIn");
     if (localStorageIsLoggedIn === "1") {
       setIsLoggedIn(true);
