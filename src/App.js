@@ -1,29 +1,24 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
-import Header from "./components5/Layout/Header";
-import Meals from "./components5/Meals/Meals";
-import Cart from "./components5/Cart/Cart";
-import CartProvider from "./store/CartProvider";
+import Button from './components/UI/Button/Button';
+import DemoOutput from './components/Demo/DemoOutput';
+import './App.css';
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(false);
+  const [showParagraph, setShowParagraph] = useState(false);
 
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
+  console.log('APP RUNNING');
 
-  const hideCartHandler = () => {
-    setCartIsShown(false);
+  const toggleParagraphHandler = () => {
+    setShowParagraph((prevShowParagraph) => !prevShowParagraph);
   };
 
   return (
-    <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-    </CartProvider>
+    <div className="app">
+      <h1>Hi there!</h1>
+      <DemoOutput show={showParagraph} />
+      <Button onClick={toggleParagraphHandler}>Toggle Paragraph!</Button>
+    </div>
   );
 }
 
