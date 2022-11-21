@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import Button from "./components/UI/Button/Button";
 import DemoOutput from "./components/Demo/DemoOutput";
@@ -9,9 +9,10 @@ function App() {
 
   console.log("APP RUNNING");
 
-  const toggleParagraphHandler = () => {
+  //useCallback caches the function and uses the same function if the dependencies not changed, otherwise reinitialize the function with new reference, and Button component will rerender even if React.memo used in button component.
+  const toggleParagraphHandler = useCallback(() => {
     setShowParagraph((prevShowParagraph) => !prevShowParagraph);
-  };
+  }, []);
 
   return (
     <div className="app">
