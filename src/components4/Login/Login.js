@@ -25,6 +25,7 @@ const emailReducer = (state, action) => {
   };
 };
 
+//also we can use one reducer for both email and password
 const passwordReducer = (state, action) => {
   if (action.type === "USER_INPUT") {
     return { value: action.value, isValid: action.value.trim().length > 6 };
@@ -36,10 +37,14 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = (props) => {
+  //related pieces of state so converted to useReducer
   // const [enteredEmail, setEnteredEmail] = useState("");
   // const [emailIsValid, setEmailIsValid] = useState();
+
+  //related pieces of state so converted to useReducer
   // const [enteredPassword, setEnteredPassword] = useState("");
   // const [passwordIsValid, setPasswordIsValid] = useState();
+
   const [formIsValid, setFormIsValid] = useState(false);
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: "",
