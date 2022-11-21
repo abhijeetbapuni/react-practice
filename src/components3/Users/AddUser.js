@@ -7,7 +7,7 @@ import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
   const [error, setError] = useState();
-  const nameInputRef = useRef();
+  const nameInputRef = useRef(); //use this mostly when to read data from dom
   const ageInputRef = useRef();
 
   const addUserHandler = (event) => {
@@ -50,9 +50,11 @@ const AddUser = (props) => {
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
-          <input id="username" type="text" ref={nameInputRef} />
+          <input id="username" type="text" ref={nameInputRef} />{" "}
+          {/*it is now uncontrolled component */}
           <label htmlFor="age">Age (Years)</label>
-          <input id="age" type="number" ref={ageInputRef} />
+          <input id="age" type="number" ref={ageInputRef} />{" "}
+          {/*it is now uncontrolled component */}
           <Button type="submit">Add User</Button>
         </form>
       </Card>
