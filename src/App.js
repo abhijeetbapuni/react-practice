@@ -6,6 +6,12 @@ import MainHeader from "./components4/MainHeader/MainHeader";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // don't use like this
+  // useEffect(() => {
+  //   console.log("calls like normal function");
+  // });
+
   useEffect(() => {
     const localStorageIsLoggedIn = localStorage.getItem("isLoggedIn");
     if (localStorageIsLoggedIn === "1") {
