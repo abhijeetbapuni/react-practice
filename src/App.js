@@ -1,29 +1,29 @@
-import React, { useContext } from "react";
+import { useState } from "react";
 
-import Login from "./components4/Login/Login";
-import Home from "./components4/Home/Home";
-import MainHeader from "./components4/MainHeader/MainHeader";
-import AuthContext from "./store/auth-context";
+import Header from "./components5/Layout/Header";
+import Meals from "./components5/Meals/Meals";
+import Cart from "./components5/Cart/Cart";
+import CartProvider from "./store/CartProvider";
 
-// React context is not optimized for high frequency changes
-//Only call react hooks in react functions i.e. react component functions and custom hooks
-//Only call react hooks at the top level, not inside in nested functions or block level statements
 function App() {
-  const ctx = useContext(AuthContext);
-  // don't use like this
-  // useEffect(() => {
-  //   console.log("calls like normal function");
-  // });
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
 
   return (
-    // value prop is required with your state values
-    <>
-      <MainHeader />
+    <CartProvider>
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      <Header onShowCart={showCartHandler} />
       <main>
-        {!ctx.isLoggedIn && <Login />}
-        {ctx.isLoggedIn && <Home />}
+        <Meals />
       </main>
-    </>
+    </CartProvider>
   );
 }
 
