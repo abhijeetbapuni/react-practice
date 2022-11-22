@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useHttp from "../hooks/use-http";
 
 import Section from "../UI/Section";
@@ -24,13 +23,13 @@ const NewTask = (props) => {
         },
         body: { text: taskText },
       },
-      // createTask.bind(null,taskText)
+      createTask.bind(null, taskText)
       // or else we can do
-      (taskData) => {
-        const generatedId = taskData.name;
-        const createdTask = { id: generatedId, text: taskText };
-        props.onAddTask(createdTask);
-      }
+      // (taskData) => {
+      //   const generatedId = taskData.name;
+      //   const createdTask = { id: generatedId, text: taskText };
+      //   props.onAddTask(createdTask);
+      // }
     );
   };
 
