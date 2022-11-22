@@ -9,15 +9,15 @@ function App() {
     fetch("https://swapi.dev/api/films/")
       .then((response) => response.json())
       .then((data) => {
-        // const transformedMovies = data.results.map((movie) => {
-        //   return {
-        //     id: movie.episode_id,
-        //     title: movie.title,
-        //     openingText: movie.opening_crawl,
-        //     releaseDate: movie.release_date,
-        //   };
-        // });
-        setMovies(data.results);
+        const transformedMovies = data.results.map((movie) => {
+          return {
+            id: movie.episode_id,
+            title: movie.title,
+            openingText: movie.opening_crawl,
+            releaseDate: movie.release_date,
+          };
+        });
+        setMovies(transformedMovies);
       });
   }
   return (
