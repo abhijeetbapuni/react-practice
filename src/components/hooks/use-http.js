@@ -10,9 +10,9 @@ const useHttp = (requestConfig, applyData) => {
     setError(null);
     try {
       const response = await fetch(url, {
-        method,
-        body: JSON.stringify(body),
-        headers,
+        method: method ? method : "GET",
+        headers: headers ? headers : {},
+        body: body ? JSON.stringify(body) : null,
       });
 
       if (!response.ok) {
