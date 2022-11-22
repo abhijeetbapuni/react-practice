@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
@@ -8,7 +8,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function fetchMoviesHandler() {
+  const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
@@ -34,7 +34,12 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  }
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]); //we need to use fetchMoviesHandler function in dependencies array because if we have some external state to change the movies, then fetchMoviesHandler woun't recall if App component won't rerender. and if we use fetchMoviesHandler function as a dependency then we shoud use useCallback hook so that function is a object and it changes reference on every rerender so useEffect will run infinitely.
+
   let content = <p>Found no movies.</p>;
   if (movies.length > 0) {
     content = <MoviesList movies={movies} />;
