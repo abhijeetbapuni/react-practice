@@ -6,6 +6,8 @@ import useHttp from "./components/hooks/use-http";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+
+  const { isLoading, error, sendRequest: fetchTasks } = useHttp();
   const transformTasks = (tasksObj) => {
     const loadedTasks = [];
 
@@ -15,18 +17,12 @@ function App() {
 
     setTasks(loadedTasks);
   };
-  const {
-    isLoading,
-    error,
-    sendRequest: fetchTasks,
-  } = useHttp(
-    { url: "https://practice-340fe-default-rtdb.firebaseio.com/tasks.json" },
-    transformTasks
-  );
-
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    fetchTasks(
+      { url: "https://practice-340fe-default-rtdb.firebaseio.com/tasks.json" },
+      transformTasks
+    );
+  }, [fetchTasks]); //make sure fetchTasks uses useCallback hook, other api call will be infinite loop
 
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
