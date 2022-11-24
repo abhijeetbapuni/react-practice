@@ -4,8 +4,8 @@ import classes from "./Counter.module.css";
 
 const Counter = () => {
   //use selector binds the state to this component so that we will always the the updated state when state changes, also it manages subsciptions and unsubscriptions when component unmount
-  const counter = useSelector((state) => state.counter);
-  const show = useSelector((state) => state.showCounter); //slice of showCounter and show is a state variable
+  const counter = useSelector((state) => state.counterReducer.counter);
+  const show = useSelector((state) => state.counterReducer.showCounter); //slice of showCounter and show is a state variable
 
   const dispatch = useDispatch();
   const toggleCounterHandler = () => {
