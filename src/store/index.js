@@ -5,6 +5,7 @@ const initialState = { counter: 0, showCounter: true };
 //state is by default undefined, so provide initial state for state
 const counterReducer = (state = initialState, action) => {
   if (action.type === "increment") {
+    // state.counter++; //This works for never do this, always return a separate object and return all the keys as react doesn't merge the state, it overrides the state
     return {
       counter: state.counter + 1,
       showCounter: state.showCounter,
