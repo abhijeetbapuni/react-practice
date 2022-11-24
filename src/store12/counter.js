@@ -6,6 +6,7 @@ const counterSlice = createSlice({
   name: "counter", //identifier//use any name you want
   initialState,
   reducers: {
+    //Reducers must be pure, side effect free, synchronous functions
     increment(state) {
       state.counter++; //we can do this here as redux toolkit internally make it immutable code and not update the state directly, and also we don't need to pass all the keys also
     },
